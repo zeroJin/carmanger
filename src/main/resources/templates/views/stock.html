@@ -5,46 +5,14 @@
 <title>库存管理</title>
 
 <!-- bootstrap common -->
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"
-	rel="stylesheet">
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <!-- bootstrap-table -->
-<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.css"
-	rel="stylesheet">
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/locale/bootstrap-table-zh-CN.min.js"></script>
-
-<!-- bootstrap-table-export-->
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/extensions/export/bootstrap-table-export.min.js"></script>
-<script src="/js/tableExport.min.js"></script>
-
-<!-- bootstrap validator -->
-<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/css/bootstrapValidator.min.css"
-	rel="stylesheet">
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/language/zh_CN.min.js"></script>
-
-<!-- bootstrap-datepicker -->
-<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css"
-	rel="stylesheet">
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/locales/bootstrap-datepicker.zh-CN.min.js"></script>
-
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.js"></script>
+<script	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/locale/bootstrap-table-zh-CN.min.js"></script>
 </head>
 <body>
 	<div id="content">
@@ -53,16 +21,11 @@
 			<button class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModal" data-index="-1">添加</button>
 		</div>
 	</div>
-	<table id="infoTable" style="font-size: 0.9em;" data-toggle="table"
-		data-url="$!{ctx}/detail/accident?sl=$!{sl}&start=${start}&end=${end}"
-		data-striped="true" data-show-refresh="true" data-search="true"
-		data-show-columns="true" data-pagination="true"
-		data-show-pagination-switch="true" data-show-export="true"
-		data-export-data-type="all">
+	<table id="infoTable" data-toggle="table" data-show-refresh="true" data-search="true" data-show-columns="true" data-toolbar="#content" data-show-header="true">
 		<thead>
 			<tr>
 				<th data-formatter="indexFormatter">序号</th>
-				<th data-field="serviceLine" data-sortable="true">类别</th>
+				<th data-field="type" data-sortable="true">类别</th>
 				<th data-field="level" data-sortable="true">品牌</th>
 				<th data-field="accidentType" data-sortable="true">数量</th>
 				<th data-field="accDesc" data-sortable="true">价格</th>
@@ -79,42 +42,40 @@
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					<h4 class="modal-title" id="myModalLabel">
-						模态框（Modal）标题
+						添加库存
 					</h4>
 				</div>
 				<div class="modal-body">
-					<form class="form-horizontal" role="form">
-					  <div class="form-group">
-					    <label for="firstname" class="col-sm-2 control-label">名字</label>
-					    <div class="col-sm-10">
-					      <input type="text" class="form-control" id="firstname" placeholder="请输入名字">
-					    </div>
-					  </div>
-					  <div class="form-group">
-					    <label for="lastname" class="col-sm-2 control-label">姓</label>
-					    <div class="col-sm-10">
-					      <input type="text" class="form-control" id="lastname" placeholder="请输入姓">
-					    </div>
-					  </div>
-					  <div class="form-group">
-					    <div class="col-sm-offset-2 col-sm-10">
-					      <div class="checkbox">
-					        <label>
-					          <input type="checkbox">请记住我
-					        </label>
-					      </div>
-					    </div>
-					  </div>
-					  <div class="form-group">
-					    <div class="col-sm-offset-2 col-sm-10">
-					      <button type="submit" class="btn btn-default">登录</button>
-					    </div>
-					  </div>
+					<form class="form-horizontal" role="form" id="stock">
+						<div class="form-group">
+							<label for="type" class="col-sm-2 control-label">类别</label>
+							<div class="col-sm-10">
+							  <input type="text" class="form-control" id="type" placeholder="请输入分类">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="brand" class="col-sm-2 control-label">品牌</label>
+							<div class="col-sm-10">
+							  <input type="text" class="form-control" id="brand" placeholder="请输入品牌">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="num" class="col-sm-2 control-label">数量</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="num" placeholder="请输入数量">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="price" class="col-sm-2 control-label">价格</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="price" placeholder="请输入价格">
+							</div>
+						</div>
 					</form>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-					<button type="button" class="btn btn-primary">提交更改</button>
+					<button type="button" class="btn btn-primary" onsubmit="#stock">提交更改</button>
 				</div>
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal -->
